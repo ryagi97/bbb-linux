@@ -27,3 +27,11 @@
         };
     };
 };
+
+&i2c2 {
+	bme680@76 {
+		status = "okay";
+		compatible = "bosch,bme680";
+		reg = <0x76>;
+	};
+};

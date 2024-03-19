@@ -10,3 +10,20 @@
 	model = "Ryan's TI AM335x BeagleBone Black";
 	compatible = "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
 };
+
+/ {
+    leds {
+        led2 {
+            label = "usr0";
+        };
+		led3 {
+            label = "usr1";
+        };
+		led4 {
+            label = "usr2";
+        };
+		led5 {
+            label = "usr3";
+        };
+    };
+};

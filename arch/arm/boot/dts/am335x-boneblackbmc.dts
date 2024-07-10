@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+ * Copyright (C) 2024 Ryan Agius - ryagius17@gmail.com
+ */
+/dts-v1/;
+
+#include "am335x-boneblack.dts"
+
+/ {
+	model = "TI AM335x BeagleBone Black with OpenBMC support";
+	compatible = "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
+};
+
+/ {
+    leds {
+        // USR0
+        led2 {
+            label = "fault";
+            /delete-property/ linux,default-trigger;
+        };
+        // USR1
+		led3 {
+            label = "identify";
+            /delete-property/ linux,default-trigger;
+        };
+        // USR2
+		led4 {
+            label = "status";
+            /delete-property/ linux,default-trigger;
+        };
+        // USR3
+		led5 {
+            label = "power";
+            /delete-property/ linux,default-trigger;
+        };
+    };
+};

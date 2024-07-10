@@ -938,6 +938,7 @@ dtb-$(CONFIG_SOC_AM33XX) += \
 	am335x-bone.dtb \
 	am335x-boneblack.dtb \
 	am335x-boneblackryan.dtb \
+	am335x-boneblackbmc.dtb \
 	am335x-boneblack-uboot.dtb \
 	PB-MIKROBUS-1.dtbo \
 	PB-MIKROBUS-0.dtbo \

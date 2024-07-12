@@ -9,7 +9,6 @@
 
 #include <dt-bindings/pinctrl/am33xx.h>
 
-
 / {
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
@@ -24,7 +23,6 @@
 			};
 		};
 	};
-
 
 	/*
 	 * Free up the pins used by the cape from the pinmux helpers.

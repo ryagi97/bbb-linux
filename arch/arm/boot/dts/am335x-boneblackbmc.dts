@@ -36,21 +36,3 @@
         };
     };
 };
-
-// set pinmux back to UART1 P9_24, P9_26 
-&am33xx_pinmux {
-    uart1_pins: uart1_pins {
-        pinctrl-single,pins = <
-            AM33XX_PADCONF(AM335X_PIN_UART1_TXD, PIN_OUTPUT, MUX_MODE0)	/* P9_24 uart1_txd.uart1_txd */
-            AM33XX_PADCONF(AM335X_PIN_UART1_RXD, PIN_INPUT, MUX_MODE0)	/* P9_26 uart1_rxd.uart1_rxd */
-        >;
-    };
-};
-
-// enable UART 1
-&uart1 {
-	/* sudo agetty 115200 ttyS1 */
-	status = "okay";
-	pinctrl-names = "default";
-	pinctrl-0 = <&uart1_pins>;
-};

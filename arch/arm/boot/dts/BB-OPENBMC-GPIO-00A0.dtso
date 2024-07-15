@@ -63,43 +63,74 @@
 				"P8_17",
 				"[rmii1_txd0]",
 				"[rmii1_refclk]",
-				"HOST_RESET",
-				"HOST_RECOVERY";
+				"BMC_POWER_UP",
+				"SOFTWARE_PGOOD";
+		};
+	};
+
+	/*
+	 * Rename pins
+	 */
+	 fragment@2 {
+		target = <&gpio1>;
+		__overlay__ {
+			gpio-line-names =
+				"P8_25 [mmc1_dat0]",
+				"[mmc1_dat1]",
+				"P8_5 [mmc1_dat2]",
+				"P8_6 [mmc1_dat3]",
+				"P8_23 [mmc1_dat4]",
+				"P8_22 [mmc1_dat5]",
+				"P8_3 [mmc1_dat6]",
+				"P8_4 [mmc1_dat7]",
+				"NC",
+				"NC",
+				"NC",
+				"NC",
+				"P8_12",
+				"P8_11",
+				"P8_16",
+				"P8_15",
+				"P9_15A",
+				"P9_23",
+				"P9_14 [ehrpwm1a]",
+				"P9_16 [ehrpwm1b]",
+				"[emmc rst]",
+				"[usr0 led]",
+				"[usr1 led]",
+				"[usr2 led]",
+				"[usr3 led]",
+				"[hdmi irq]",
+				"[usb vbus oc]",
+				"[hdmi audio]",
+				"SYS_PWROK_BUFF",
+				"P8_26",
+				"P8_21 [emmc]",
+				"P8_20 [emmc]";
 		};
 	};
 
 	/*
 	 * Free pinx from pinmux helpers
 	 */
-	fragment@2 {
+	fragment@3 {
 		target = <&ocp>;
 		__overlay__ {
           P9_11_pinmux { status = "disabled"; };	/* P9_11: uart4_rxd */
+					P9_12_pinmux { status = "disabled"; };	/* P9_12: */
 	        P9_13_pinmux { status = "disabled"; };	/* P9_13: uart4_txd */
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
-
 			bb_gpio_hostctrl_pins: pinmux_bb_gpio_hostctrl_pins {
 				pinctrl-single,pins = <
 			    AM33XX_PADCONF(AM335X_PIN_GPMC_WAIT0, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* P9_11 gpmc_wait0.uart4_rxd_mux2 */
-          AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P9_13 gpmc_wpn.uart4_txd_mux2 */
+					AM33XX_PADCONF(AM335X_PIN_GPMC_BEN1, PIN_INPUT_PULLUP, MUX_MODE7) /* P9_12 */
+          AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* P9_13 gpmc_wpn.uart4_txd_mux2 */
 				>;
-			};
-		};
-	};
-
-  fragment@4 {
-		target = <&ocp>;
-		__overlay__ {
-			gpio_hostctrl: hostctrl {
-				compatible = "bone-pinmux-helper";
-				pinctrl-names = "default";
-				pinctrl-0 = <&bb_gpio_hostctrl_pins>;
-				status = "okay";
 			};
 		};
 	};

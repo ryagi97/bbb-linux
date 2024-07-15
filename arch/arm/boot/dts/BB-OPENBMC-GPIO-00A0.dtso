@@ -27,30 +27,72 @@
 	};
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Rename pins
 	 */
 	fragment@1 {
+		target = <&gpio0>;
+		__overlay__ {
+			gpio-line-names =
+				"[mdio_data]",
+				"[mdio_clk]",
+				"P9_22 [spi0_sclk]",
+				"P9_21 [spi0_d0]",
+				"P9_18 [spi0_d1]",
+				"P9_17 [spi0_cs0]",
+				"[mmc0_cd]",
+				"P9_42A [ecappwm0]",
+				"P8_35 [lcd d12]",
+				"P8_33 [lcd d13]",
+				"P8_31 [lcd d14]",
+				"P8_32 [lcd d15]",
+				"P9_20 [i2c2_sda]",
+				"P9_19 [i2c2_scl]",
+				"P9_26 [uart1_rxd]",
+				"P9_24 [uart1_txd]",
+				"[rmii1_txd3]",
+				"[rmii1_txd2]",
+				"[usb0_drvvbus]",
+				"[hdmi cec]",
+				"P9_41B",
+				"[rmii1_txd1]",
+				"P8_19 [ehrpwm2a]",
+				"P8_13 [ehrpwm2b]",
+				"NC",
+				"NC",
+				"P8_14",
+				"P8_17",
+				"[rmii1_txd0]",
+				"[rmii1_refclk]",
+				"HOST_RESET",
+				"HOST_RECOVERY";
+		};
+	};
+
+	/*
+	 * Free pinx from pinmux helpers
+	 */
+	fragment@2 {
 		target = <&ocp>;
 		__overlay__ {
-            P9_11_pinmux { status = "disabled"; };	/* P9_11: uart4_rxd */
+          P9_11_pinmux { status = "disabled"; };	/* P9_11: uart4_rxd */
 	        P9_13_pinmux { status = "disabled"; };	/* P9_13: uart4_txd */
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
 			bb_gpio_hostctrl_pins: pinmux_bb_gpio_hostctrl_pins {
 				pinctrl-single,pins = <
-			        AM33XX_PADCONF(AM335X_PIN_GPMC_WAIT0, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* P9_11 gpmc_wait0.uart4_rxd_mux2 */
-                    AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P9_13 gpmc_wpn.uart4_txd_mux2 */
+			    AM33XX_PADCONF(AM335X_PIN_GPMC_WAIT0, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* P9_11 gpmc_wait0.uart4_rxd_mux2 */
+          AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P9_13 gpmc_wpn.uart4_txd_mux2 */
 				>;
 			};
 		};
 	};
 
-    fragment@3 {
+  fragment@4 {
 		target = <&ocp>;
 		__overlay__ {
 			gpio_hostctrl: hostctrl {
